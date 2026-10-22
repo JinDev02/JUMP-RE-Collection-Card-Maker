@@ -163,17 +163,17 @@ function drawAura(ctx,s){
  ctx.save();ctx.globalCompositeOperation=S.blend;ctx.globalAlpha=S.power/100;ctx.drawImage(t,0,0,W,H);ctx.restore();
 }
 function fit(x,txt,fs,max){x.font=`900 ${fs}px "Noto Sans JP",sans-serif`;const w=x.measureText(txt).width;return w>max?fs*max/w:fs}
-function drawName(ctx){const nm=S.name.trim(),fu=S.furi.trim(),cx=377;
+function drawName(ctx){const nm=S.name.trim(),fu=S.furi.trim(),cx=377;const nameY=690,nameAngle=-0.122173,furiY=624;
  if(nm){const fs=fit(ctx,nm,56,236),k=fs/56,g=mk(W,H),gx=g.getContext('2d');
   gx.font=`900 ${fs}px "Noto Sans JP",sans-serif`;gx.textAlign='center';gx.lineJoin='round';
   const gr=gx.createLinearGradient(cx-120,0,cx+120,0);[['#ffe600'],['#3dff5a'],['#2ec8ff'],['#8a3bff'],['#ff2bd6']].forEach((c,i)=>gr.addColorStop(i/4,c[0]));
-  gx.strokeStyle=gr;gx.lineWidth=20*k;gx.strokeText(nm,cx,690);
+  gx.strokeStyle=gr;gx.lineWidth=20*k;gx.save();gx.translate(cx,nameY);gx.rotate(nameAngle);gx.strokeText(nm,0,0);gx.restore();
   ctx.save();ctx.globalAlpha=.95;ctx.drawImage(blur(g,5),0,0);ctx.restore();
-  ctx.save();ctx.font=`900 ${fs}px "Noto Sans JP",sans-serif`;ctx.textAlign='center';ctx.lineJoin='round';
-  ctx.strokeStyle='#15151c';ctx.lineWidth=10*k;ctx.strokeText(nm,cx,690);
-  const f=ctx.createLinearGradient(0,690-fs*.8,0,690);f.addColorStop(0,'#fff');f.addColorStop(1,'#dcdce6');ctx.fillStyle=f;ctx.fillText(nm,cx,690);ctx.restore()}
+  ctx.save();ctx.translate(cx,nameY);ctx.rotate(nameAngle);ctx.font=`900 ${fs}px "Noto Sans JP",sans-serif`;ctx.textAlign='center';ctx.lineJoin='round';
+  ctx.strokeStyle='#15151c';ctx.lineWidth=10*k;ctx.strokeText(nm,0,0);
+  const f=ctx.createLinearGradient(0,-fs*.8,0,0);f.addColorStop(0,'#fff');f.addColorStop(1,'#dcdce6');ctx.fillStyle=f;ctx.fillText(nm,0,0);ctx.restore()}
  if(fu){ctx.save();if('letterSpacing'in ctx)ctx.letterSpacing='3px';const fs=fit(ctx,fu,24,230);
-  ctx.translate(cx,612);ctx.rotate(-.05);ctx.font=`900 ${fs}px "Noto Sans JP",sans-serif`;ctx.textAlign='center';ctx.lineJoin='round';
+  ctx.translate(cx,furiY);ctx.rotate(nameAngle);ctx.font=`900 ${fs}px "Noto Sans JP",sans-serif`;ctx.textAlign='center';ctx.lineJoin='round';
   ctx.strokeStyle='#1a1a24';ctx.lineWidth=6;ctx.strokeText(fu,0,0);ctx.fillStyle='#fff';ctx.fillText(fu,0,0);ctx.restore()}}
 function render(ctx,s){ctx.save();ctx.setTransform(s,0,0,s,0,0);ctx.clearRect(0,0,W,H);
  ctx.drawImage(I.base,0,0,W,H);
