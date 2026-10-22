@@ -163,7 +163,7 @@ function drawAura(ctx,s){
  ctx.save();ctx.globalCompositeOperation=S.blend;ctx.globalAlpha=S.power/100;ctx.drawImage(t,0,0,W,H);ctx.restore();
 }
 function fit(x,txt,fs,max){x.font=`900 ${fs}px "Noto Sans JP",sans-serif`;const w=x.measureText(txt).width;return w>max?fs*max/w:fs}
-function drawName(ctx){const nm=S.name.trim(),fu=S.furi.trim(),cx=377;const nameY=690,nameAngle=-0.122173,furiY=624;
+function drawName(ctx){const nm=S.name.trim(),fu=S.furi.trim(),cx=377;const nameY=690,nameAngle=-0.191986,furiY=624;
  if(nm){const fs=fit(ctx,nm,56,236),k=fs/56,g=mk(W,H),gx=g.getContext('2d');
   gx.font=`900 ${fs}px "Noto Sans JP",sans-serif`;gx.textAlign='center';gx.lineJoin='round';
   const gr=gx.createLinearGradient(cx-120,0,cx+120,0);[['#ffe600'],['#3dff5a'],['#2ec8ff'],['#8a3bff'],['#ff2bd6']].forEach((c,i)=>gr.addColorStop(i/4,c[0]));
