@@ -176,7 +176,7 @@ function drawName(ctx){const nm=S.name.trim(),fu=S.furi.trim(),cx=377;const name
   ctx.translate(cx,furiY);ctx.rotate(nameAngle);ctx.font=`900 ${fs}px "Noto Sans JP",sans-serif`;ctx.textAlign='center';ctx.lineJoin='round';
   ctx.strokeStyle='#1a1a24';ctx.lineWidth=6;ctx.strokeText(fu,0,0);ctx.fillStyle='#fff';ctx.fillText(fu,0,0);ctx.restore()}}
 function render(ctx,s){ctx.save();ctx.setTransform(s,0,0,s,0,0);ctx.clearRect(0,0,W,H);
- ctx.drawImage(I.base,0,0,W,H);
+ ctx.drawImage(I.base,0,0,W,H);}
  if(S.auraOn&&S.char)drawAura(ctx,s);
  ctx.save();ctx.globalCompositeOperation='lighten';ctx.globalAlpha=.74;ctx.drawImage(I.spark,0,0,W,H);ctx.restore();
  if(S.char)drawChar(ctx);
