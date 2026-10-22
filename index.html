@@ -163,7 +163,7 @@ function drawAura(ctx,s){
  ctx.save();ctx.globalCompositeOperation=S.blend;ctx.globalAlpha=S.power/100;ctx.drawImage(t,0,0,W,H);ctx.restore();
 }
 function fit(x,txt,fs,max){x.font=`900 ${fs}px "Noto Sans JP",sans-serif`;const w=x.measureText(txt).width;return w>max?fs*max/w:fs}
-function drawName(ctx){const nm=S.name.trim(),fu=S.furi.trim(),cx=377;const nameY=690,nameAngle=-0.122173,furiY=624;
+function drawName(ctx){const nm=S.name.trim(),fu=S.furi.trim(),cx=377;const nameY=690,nameAngle=-0.1919862,furiY=624;
  if(nm){const fs=fit(ctx,nm,56,236),k=fs/56,g=mk(W,H),gx=g.getContext('2d');
   gx.font=`900 ${fs}px "Noto Sans JP",sans-serif`;gx.textAlign='center';gx.lineJoin='round';
   const gr=gx.createLinearGradient(cx-120,0,cx+120,0);[['#ffe600'],['#3dff5a'],['#2ec8ff'],['#8a3bff'],['#ff2bd6']].forEach((c,i)=>gr.addColorStop(i/4,c[0]));
@@ -176,12 +176,12 @@ function drawName(ctx){const nm=S.name.trim(),fu=S.furi.trim(),cx=377;const name
   ctx.translate(cx,furiY);ctx.rotate(nameAngle);ctx.font=`900 ${fs}px "Noto Sans JP",sans-serif`;ctx.textAlign='center';ctx.lineJoin='round';
   ctx.strokeStyle='#1a1a24';ctx.lineWidth=6;ctx.strokeText(fu,0,0);ctx.fillStyle='#fff';ctx.fillText(fu,0,0);ctx.restore()}}
 function render(ctx,s){ctx.save();ctx.setTransform(s,0,0,s,0,0);ctx.clearRect(0,0,W,H);
- ctx.drawImage(I.base,0,0,W,H);
+ ctx.drawImage(I.base,0,0,W,H);}
  if(S.auraOn&&S.char)drawAura(ctx,s);
  ctx.save();ctx.globalCompositeOperation='lighten';ctx.globalAlpha=.74;ctx.drawImage(I.spark,0,0,W,H);ctx.restore();
  if(S.char)drawChar(ctx);
  const b=I.bars[S.style][S.type];if(b)ctx.drawImage(b,0,633);
- if(S.logo){const L=S.logo,r=Math.min(131/L.width,66/L.height),w=L.width*r,h=L.height*r;ctx.drawImage(L,437.5-w/2,738-h/2,w,h)}
+ if(S.logo){const L=S.logo,r=Math.min(131/L.width,66/L.height),w=L.width*r,h=L.height*r;ctx.save();ctx.translate(437.5,738);ctx.rotate(-0.1919862);ctx.drawImage(L,-w/2,-h/2,w,h);ctx.restore();
  drawName(ctx);ctx.drawImage(I.border,0,0,W,H);
  ctx.globalCompositeOperation='destination-in';ctx.drawImage(I.shape,0,0,W,H);ctx.restore()}
 const cv=$('cv'),cx2=cv.getContext('2d');cv.width=W*PS;cv.height=H*PS;
